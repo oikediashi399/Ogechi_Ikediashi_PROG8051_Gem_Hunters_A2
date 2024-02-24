@@ -208,7 +208,21 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
             return false;
         }
 
-        
+        // Method to check if a player collects a gem at their current position
+        public void CollectGem(Player player)
+        {
+            // Get the current coordinates of the player
+            int x = player.Position.X;
+            int y = player.Position.Y;
+
+            // Check if the current cell contains a gem
+            if (grid[y, x].Occupant == "G")
+            {
+                // Increment the player's gem count and set the cell to an empty space
+                player.GemCount += 1;
+                grid[y, x].Occupant = "-";
+            }
+        }
     }
 
 
