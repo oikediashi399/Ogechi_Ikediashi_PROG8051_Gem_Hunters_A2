@@ -65,7 +65,19 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
             GemCount = 0;
         }
 
-
+        // Method to move the player in a specified direction on the game board
+        public void Move(char direction)
+        {
+            // Check the provided direction and adjust the player's position accordingly
+            if (direction == 'U')
+                Position.Y -= 1;
+            else if (direction == 'D')
+                Position.Y += 1;
+            else if (direction == 'L')
+                Position.X -= 1;
+            else if (direction == 'R')
+                Position.X += 1;
+        }
     }
 
 
