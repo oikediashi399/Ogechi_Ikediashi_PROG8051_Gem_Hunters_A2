@@ -227,6 +227,37 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
 
 
 
+    // Represents the main game logic and flow in the "Gem Hunters" game
+    class Game
+    {
+        // Private fields to store the game board, players, current turn, and total turns
+        private Board board;
+        private Player player1;
+        private Player player2;
+        private Player currentTurn;
+        private int totalTurns;
+
+        // Constructor to initialize the game with a board and two players
+        public Game()
+        {
+            // Create a new game board
+            board = new Board();
+
+            // Create Player 1 with the name "P1" and starting position at (0, 0)
+            player1 = new Player("P1", new Position(0, 0));
+
+            // Create Player 2 with the name "P2" and starting position at (5, 5)
+            player2 = new Player("P2", new Position(5, 5));
+
+            // Set the current turn to Player 1 at the beginning
+            currentTurn = player1;
+
+            // Initialize the total turns to 0
+            totalTurns = 0;
+        }
+
+        // Method to start the game loop
+    }
 
 
 
