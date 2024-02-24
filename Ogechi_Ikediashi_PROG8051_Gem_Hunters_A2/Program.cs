@@ -165,7 +165,49 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
             }
         }
 
-       
+        // Method to display the current state of the board in the console
+        public void Display()
+        {
+            // Loop through each row of the grid
+            for (int i = 0; i < 6; i++)
+            {
+                // Loop through each column of the grid
+                for (int j = 0; j < 6; j++)
+                {
+                    // Print the occupant of the current cell followed by a space
+                    Console.Write(grid[i, j].Occupant + " ");
+                }
+
+                // Move to the next line after printing each row
+                Console.WriteLine();
+            }
+        }
+
+        // Method to check if a move is valid for a given player
+        public bool IsValidMove(Player player, char direction)
+        {
+            // Get the current coordinates of the player
+            int newX = player.Position.X;
+            int newY = player.Position.Y;
+
+            // Update the coordinates based on the provided direction
+            if (direction == 'U')
+                newY -= 1;
+            else if (direction == 'D')
+                newY += 1;
+            else if (direction == 'L')
+                newX -= 1;
+            else if (direction == 'R')
+                newX += 1;
+
+            // Check if the new coordinates are within the bounds of the grid and the cell is not an obstacle
+            if (newX >= 0 && newX < 6 && newY >= 0 && newY < 6 && grid[newY, newX].Occupant != "O")
+                return true;
+
+            // Return false if the move is not valid
+            return false;
+        }
+
         
     }
 
