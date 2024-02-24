@@ -98,6 +98,76 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
 
 
 
+    // This class represents the entire game board including cells and it's possible occupants
+    class Board
+    {
+        // Declaring a 2-D array to represent the game board like a table
+        private Cell[,] grid;
+
+        // Implementing a Constructor to initialize the board by creating cells and initializing their occupants
+        public Board()
+        {
+            // Initialize the board with 6 rows and 6 columns
+            grid = new Cell[6, 6];
+
+            // Calling the method to pick new cell value and set up the initial state of the board
+            InitializeBoard();
+        }
+
+        // Method to set up the initial state of the board (players, gems, and obstacles)
+        private void InitializeBoard()
+        {
+            // Loop through each row of the board
+            for (int i = 0; i < 6; i++)
+            {
+                // Loop through each column of the board
+                for (int j = 0; j < 6; j++)
+                {
+                    // Setting up the board for a game round
+                    // Create a new cell and assign it to the current position in the grid
+                    grid[i, j] = new Cell();
+                }
+            }
+
+            // Initialize players
+            grid[0, 5].Occupant = "P1";
+            grid[5, 0].Occupant = "P2";
+
+            // Initialize gems
+            Random random = new Random();
+            for (int i = 0; i < 6; i++)
+            {
+                int x, y;
+                do
+                {
+                    // Generate random coordinates for gems until an empty cell is found
+                    x = random.Next(6);
+                    y = random.Next(6);
+                } while (grid[y, x].Occupant != "-");
+
+                // Assign a gem to the randomly selected empty cell
+                grid[y, x].Occupant = "G";
+            }
+
+            // Initialize obstacles
+            for (int i = 0; i < 4; i++)
+            {
+                int x, y;
+                do
+                {
+                    // Generate random coordinates for obstacles until an empty cell is found
+                    x = random.Next(6);
+                    y = random.Next(6);
+                } while (grid[y, x].Occupant != "-");
+
+                // Assign an obstacle to the randomly selected empty cell
+                grid[y, x].Occupant = "O";
+            }
+        }
+
+       
+        
+    }
 
 
 
