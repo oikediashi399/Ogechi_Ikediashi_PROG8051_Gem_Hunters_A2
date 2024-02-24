@@ -82,6 +82,21 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
 
 
 
+    // This class represents a cell/position/location on the game board
+    class Cell
+    {
+        // Property for the occupant of the cell (player (P1 and P2), gem (G), obstacle (O), or empty(represented as -))
+        public string Occupant { get; set; }
+
+        // Constructor to initialize a cell with a default occupant of empty ("-")
+        public Cell(string occupant = "-")
+        {
+            // Set the initial occupant of the cell using the provided value (P1, P2, G, O) or the default "-"
+            Occupant = occupant;
+        }
+    }
+
+
 
 
 
