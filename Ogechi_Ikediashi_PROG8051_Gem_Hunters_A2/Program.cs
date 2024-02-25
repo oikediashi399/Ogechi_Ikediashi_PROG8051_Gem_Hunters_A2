@@ -257,6 +257,80 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
         }
 
         // Method to start the game loop
+        public void Start()
+        {
+            // Continue the game loop until the game is over
+            while (!IsGameOver())
+            {
+                // Display the current state of the board
+                board.Display();
+
+                // Print information about the current turn
+                Console.WriteLine($"\n{currentTurn.Name}'s turn. Total turns: {totalTurns + 1}");
+
+                // Prompt the player for a move direction
+                Console.Write("Enter direction (U/D/L/R): ");
+
+                // Read the key pressed by the player and convert it to upper case
+                char direction = char.ToUpper(Console.ReadKey().KeyChar);
+
+                // Check if the entered move is valid
+                if (board.IsValidMove(currentTurn, direction))
+                {
+                    // Move the current player and collect any gem at the new position
+                    currentTurn.Move(direction);
+                    board.CollectGem(currentTurn);
+
+                    // Increment the total turns and switch to the next player's turn
+                    totalTurns += 1;
+                    SwitchTurn();
+                }
+                else
+                {
+                    // Inform the player about an invalid move
+                    Console.WriteLine("\nInvalid move. Try again.");
+                }
+            }
+
+            // Announce the winner or a tie at the end of the game
+            AnnounceWinner();
+        }
+
+        // Private method to switch turns between Player 1 and Player 2
+        private void SwitchTurn()
+        {
+            // Check the current turn and switch to the other player
+            if (currentTurn == player1)
+                currentTurn = player2;
+            else
+                currentTurn = player1;
+        }
+
+        // Private method to check if the game has reached its end condition
+        private bool IsGameOver()
+        {
+            // Return true if the total turns reach 30 (15 turns for each player)
+            return totalTurns == 30;
+        }
+
+        // Private method to announce the winner or a tie at the end of the game
+        private void AnnounceWinner()
+        {
+            // Display game over message
+            Console.WriteLine("\nGame over!");
+
+            // Display the number of gems collected by each player
+            Console.WriteLine($"{player1.Name} collected {player1.GemCount} gems.");
+            Console.WriteLine($"{player2.Name} collected {player2.GemCount} gems.");
+
+            // Determine and display the winner or announce a tie
+            if (player1.GemCount > player2.GemCount)
+                Console.WriteLine($"{player1.Name} wins!");
+            else if (player1.GemCount < player2.GemCount)
+                Console.WriteLine($"{player2.Name} wins!");
+            else
+                Console.WriteLine("It's a tie!");
+        }
     }
 
 
