@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
 {
-    internal class Program
+    class Program
     {
         static void Main()
         {
-            // Project Initiallization
-            // Nothing here yet, still building the game
+            // Create a new instance of the Game class, representing the Gem Hunters game
+            Game gemHuntersGame = new Game();
+
+            // Start the Gem Hunters game by invoking the Start method on the created game instance
+            gemHuntersGame.Start();
 
         }
     }
@@ -332,23 +335,4 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
                 Console.WriteLine("It's a tie!");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
