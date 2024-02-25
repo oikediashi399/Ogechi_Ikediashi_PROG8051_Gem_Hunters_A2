@@ -277,6 +277,9 @@ namespace Ogechi_Ikediashi_PROG8051_Gem_Hunters_A2
                 // Read the key pressed by the player and convert it to upper case
                 char direction = char.ToUpper(Console.ReadKey().KeyChar);
 
+                // Create a new line
+                Console.WriteLine("\n");
+
                 // Check if the entered move is valid
                 if (board.IsValidMove(currentTurn, direction))
                 {
